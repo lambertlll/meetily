@@ -88,8 +88,6 @@ jobs:
 
       - name: Build Tauri app
         working-directory: frontend
-        env:
-          TAURI_SIGNING_PRIVATE_KEY: ''
         run: pnpm run tauri build --target ${{ matrix.target }}
 
       - name: Upload artifacts (macOS)
