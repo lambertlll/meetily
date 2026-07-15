@@ -15,12 +15,15 @@ jobs:
           - platform: macos-latest
             target: aarch64-apple-darwin
             name: macOS-arm64
+            llama_features: "--features metal"
           - platform: macos-latest
             target: x86_64-apple-darwin
             name: macOS-x64
+            llama_features: ""
           - platform: windows-latest
             target: x86_64-pc-windows-msvc
             name: Windows-x64
+            llama_features: ""
 
     runs-on: ${{ matrix.platform }}
     
@@ -45,7 +48,9 @@ jobs:
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
-          workspaces: frontend/src-tauri
+          workspaces: |
+            frontend/src-tauri
+            llama-helper
 
       - name: Install dependencies (macOS)
         if: runner.os == 'macOS'
@@ -54,6 +59,28 @@ jobs:
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
         run: choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
+
+      - name: Build llama-helper sidecar (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          echo "Building llama-helper sidecar..."
+          cargo build --release -p llama-helper ${{ matrix.llama_features }} --target ${{ matrix.target }}
+          mkdir -p frontend/src-tauri/binaries
+          cp target/${{ matrix.target }}/release/llama-helper frontend/src-tauri/binaries/llama-helper-${{ matrix.target }}
+          echo "Done:"
+          ls -la frontend/src-tauri/binaries/
+
+      - name: Build llama-helper sidecar (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Write-Host "Building llama-helper sidecar..."
+          cargo build --release -p llama-helper
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force -Path "frontend/src-tauri/binaries" | Out-Null
+          Copy-Item "target/release/llama-helper.exe" -Destination "frontend/src-tauri/binaries/llama-helper-x86_64-pc-windows-msvc.exe"
+          Write-Host "Done:"
+          Get-ChildItem "frontend/src-tauri/binaries/"
 
       - name: Install frontend dependencies
         working-directory: frontend
