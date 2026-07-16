@@ -92,12 +92,14 @@ jobs:
 
       - name: List build output
         if: runner.os == 'macOS'
+        continue-on-error: true
         run: find frontend/src-tauri/target/${{ matrix.target }}/release/bundle -type f | head -20
 
       - name: List build output (Windows)
         if: runner.os == 'Windows'
+        continue-on-error: true
         shell: pwsh
-        run: Get-ChildItem -Recurse "frontend/src-tauri/target/${{ matrix.target }}/release/bundle" | Select-Object FullName
+        run: Get-ChildItem -Recurse -Path "frontend\src-tauri\target\${{ matrix.target }}\release\bundle" -ErrorAction SilentlyContinue | Select-Object FullName
 
       - name: Upload artifacts (macOS)
         if: runner.os == 'macOS'
