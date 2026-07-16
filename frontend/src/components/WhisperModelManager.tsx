@@ -107,8 +107,8 @@ export function ModelManager({
       } catch (err) {
         console.error('Failed to initialize Whisper:', err);
         setError(err instanceof Error ? err.message : 'Failed to load models');
-        toast.error('Failed to load transcription models', {
-          description: err instanceof Error ? err.message : 'Unknown error',
+        toast.error('加载转录模型失败', {
+          description: err instanceof Error ? err.message : '未知错误',
           duration: 5000
         });
       } finally {
@@ -181,8 +181,8 @@ export function ModelManager({
           // Clean up throttle data
           progressThrottleRef.current.delete(modelName);
 
-          toast.success(`${getModelIcon(model?.accuracy || 'Good')} ${displayName} ready!`, {
-            description: 'Model downloaded and ready to use',
+          toast.success(`${getModelIcon(model?.accuracy || 'Good')} ${displayName} 已就绪！`, {
+            description: '模型已下载，可以使用',
             duration: 4000
           });
 
@@ -220,11 +220,11 @@ export function ModelManager({
           // Clean up throttle data
           progressThrottleRef.current.delete(modelName);
 
-          toast.error(`Failed to download ${displayName}`, {
+          toast.error(`下载 ${displayName} 失败`, {
             description: error,
             duration: 6000,
             action: {
-              label: 'Retry',
+              label: '重试',
               onClick: () => downloadModel(modelName)
             }
           });
@@ -277,13 +277,13 @@ export function ModelManager({
       // Clean up throttle data
       progressThrottleRef.current.delete(modelName);
 
-      toast.info(`${displayName} download cancelled`, {
+      toast.info(`${displayName} 下载已取消`, {
         duration: 3000
       });
     } catch (err) {
       console.error('Failed to cancel download:', err);
-      toast.error('Failed to cancel download', {
-        description: err instanceof Error ? err.message : 'Unknown error',
+      toast.error('取消下载失败', {
+        description: err instanceof Error ? err.message : '未知错误',
         duration: 4000
       });
     }
@@ -305,8 +305,8 @@ export function ModelManager({
         )
       );
 
-      toast.info(`Downloading ${displayName}...`, {
-        description: 'This may take a few minutes',
+      toast.info(`正在下载 ${displayName}...`, {
+        description: '这可能需要几分钟',
         duration: 5000
       });
 
@@ -340,7 +340,7 @@ export function ModelManager({
     }
 
     const displayName = getDisplayName(modelName);
-    toast.success(`Switched to ${displayName}`, {
+    toast.success(`已切换到 ${displayName}`, {
       duration: 3000
     });
   };
@@ -355,8 +355,8 @@ export function ModelManager({
       const modelList = await WhisperAPI.getAvailableModels();
       setModels(modelList);
 
-      toast.success(`${displayName} deleted`, {
-        description: 'Model removed to free up space',
+      toast.success(`${displayName} 已删除`, {
+        description: '模型已移除以释放空间',
         duration: 3000
       });
 
@@ -366,8 +366,8 @@ export function ModelManager({
       }
     } catch (err) {
       console.error('Failed to delete model:', err);
-      toast.error(`Failed to delete ${displayName}`, {
-        description: err instanceof Error ? err.message : 'Delete failed',
+      toast.error(`删除 ${displayName} 失败`, {
+        description: err instanceof Error ? err.message : '删除失败',
         duration: 4000
       });
     }
@@ -404,7 +404,7 @@ export function ModelManager({
   if (error) {
     return (
       <div className={`bg-red-50 border border-red-200 rounded-lg p-4 ${className}`}>
-        <p className="text-sm text-red-800">Failed to load models</p>
+              <p className="text-sm text-red-800">加载模型失败</p>
         <p className="text-xs text-red-600 mt-1">{error}</p>
       </div>
     );
@@ -447,7 +447,7 @@ export function ModelManager({
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="advanced-models">
             <AccordionTrigger>
-              <span className='text-lg'>Advanced Models</span>
+                          <span className='text-lg'>高级模型</span>
             </AccordionTrigger>
             <AccordionContent>
               <div className="space-y-3 pt-4">
@@ -482,7 +482,7 @@ export function ModelManager({
           animate={{ opacity: 1, y: 0 }}
           className="text-xs text-gray-500 text-center pt-2"
         >
-          Using {getDisplayName(selectedModel)} for transcription
+          正在使用 {getDisplayName(selectedModel)} 进行转录
         </motion.div>
       )}
     </div>
@@ -605,7 +605,7 @@ function ModelCard({
               <>
                 <div className="flex items-center gap-1.5 text-green-600">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-xs font-medium">Ready</span>
+                  <span className="text-xs font-medium">就绪</span>
                 </div>
                 <AnimatePresence>
                   {isHovered && (
@@ -619,7 +619,7 @@ function ModelCard({
                         onDelete();
                       }}
                       className="text-gray-400 hover:text-red-600 transition-colors p-1"
-                      title="Delete model to free up space"
+                      title="删除模型以释放空间"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -689,7 +689,7 @@ function ModelCard({
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="text-sm font-medium text-blue-600">Downloading...</span>
+                <span className="text-sm font-medium text-blue-600">下载中...</span>
                 <span className="text-sm font-semibold text-blue-600">{Math.round(downloadProgress)}%</span>
               </div>
               <button
@@ -698,9 +698,9 @@ function ModelCard({
                   onCancel();
                 }}
                 className="text-xs text-gray-600 hover:text-red-600 font-medium transition-colors px-2 py-1 rounded hover:bg-red-50"
-                title="Cancel download"
+                title="取消下载"
               >
-                Cancel
+                取消
               </button>
             </div>
             <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -717,7 +717,7 @@ function ModelCard({
                   {formatFileSize(model.size_mb * downloadProgress / 100)} / {formatFileSize(model.size_mb)}
                 </>
               ) : (
-                'Downloading...'
+                '下载中...'
               )}
             </p>
           </motion.div>

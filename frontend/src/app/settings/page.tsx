@@ -15,9 +15,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 // Tabs configuration (constant)
 const TABS = [
-  { value: 'general', label: 'General', icon: Settings2 },
-  { value: 'recording', label: 'Recordings', icon: Mic },
-  { value: 'Transcriptionmodels', label: 'Transcription', icon: DatabaseIcon },
+  { value: 'general', label: '通用', icon: Settings2 },
+  { value: 'recording', label: '录音', icon: Mic },
+  { value: 'Transcriptionmodels', label: '转录模型', icon: DatabaseIcon },
   { value: 'summaryModels', label: 'Summary', icon: SparkleIcon },
   { value: 'beta', label: 'Beta', icon: FlaskConical }
 ] as const;

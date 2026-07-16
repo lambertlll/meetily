@@ -151,7 +151,7 @@ export function LegacyDatabaseImport({ isOpen, onComplete }: LegacyDatabaseImpor
               ) : (
                 <>
                   <FolderOpen className="h-5 w-5" />
-                  <span>Browse for Database</span>
+                  <span>浏览数据库文件</span>
                 </>
               )}
             </button>
@@ -192,17 +192,17 @@ export function LegacyDatabaseImport({ isOpen, onComplete }: LegacyDatabaseImpor
               {importState === 'importing' ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  <span>Importing...</span>
+                  <span>导入中...</span>
                 </>
               ) : importState === 'success' ? (
                 <>
                   <CheckCircle2 className="h-5 w-5" />
-                  <span>Success!</span>
+                  <span>成功！</span>
                 </>
               ) : (
                 <>
                   <Database className="h-5 w-5" />
-                  <span>Import Database</span>
+                  <span>导入数据库</span>
                 </>
               )}
             </button>

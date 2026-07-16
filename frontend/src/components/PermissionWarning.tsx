@@ -98,14 +98,14 @@ export function PermissionWarning({
             {!hasMicrophone && (
               <>
                 <p className="mb-3">
-                  Meetily needs access to your microphone to record meetings. No microphone devices were detected.
+                  Meetily 需要访问您的麦克风来录制会议。未检测到麦克风设备。
                 </p>
                 <div className="space-y-2 text-sm mb-4">
-                  <p className="font-medium">Please check:</p>
+                  <p className="font-medium">请检查：</p>
                   <ul className="list-disc list-inside ml-2 space-y-1">
-                    <li>Your microphone is connected and powered on</li>
-                    <li>Microphone permission is granted in System Settings</li>
-                    <li>No other app is exclusively using the microphone</li>
+                    <li>麦克风已连接并开启</li>
+                    <li>已在系统设置中授权麦克风权限</li>
+                    <li>没有其他应用独占使用麦克风</li>
                   </ul>
                 </div>
               </>
@@ -116,16 +116,16 @@ export function PermissionWarning({
               <>
                 <p className="mb-3">
                   {hasMicrophone
-                    ? 'System audio capture is not available. You can still record with your microphone, but computer audio won\'t be captured.'
-                    : 'System audio capture is also not available.'}
+                    ? '系统音频捕获不可用。您仍可以使用麦克风录音，但无法捕获电脑音频。'
+                    : '系统音频捕获也不可用。'}
                 </p>
                 {isMacOS && (
                   <div className="space-y-2 text-sm mb-4">
-                    <p className="font-medium">To enable system audio on macOS:</p>
+                    <p className="font-medium">在 macOS 上启用系统音频：</p>
                     <ul className="list-disc list-inside ml-2 space-y-1">
-                      <li>Install a virtual audio device (e.g., BlackHole 2ch)</li>
-                      <li>Grant Screen Recording permission to Meetily</li>
-                      <li>Configure your audio routing in Audio MIDI Setup</li>
+                      <li>安装虚拟音频设备（如 BlackHole 2ch）</li>
+                      <li>授权 Meetily 屏幕录制权限</li>
+                      <li>在“音频 MIDI 设置”中配置音频路由</li>
                     </ul>
                   </div>
                 )}

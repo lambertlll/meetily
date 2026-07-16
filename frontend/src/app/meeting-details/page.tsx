@@ -186,7 +186,7 @@ function MeetingDetailsContent() {
 
     if (!meetingId || meetingId === 'intro-call') {
       console.warn('No valid meeting ID in URL - meetingId:', meetingId);
-      setError("No meeting selected");
+      setError("未选择会议");
       setIsLoading(false);
       Analytics.trackPageView('meeting_details');
       return;

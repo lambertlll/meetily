@@ -90,7 +90,7 @@ export function useCopyOperations({
       .join('\n');
 
     await navigator.clipboard.writeText(header + date + fullTranscript);
-    toast.success("Transcript copied to clipboard");
+    toast.success("转录内容已复制到剪贴板");
 
     // Track copy analytics
     const wordCount = allTranscripts
@@ -176,7 +176,7 @@ export function useCopyOperations({
       await navigator.clipboard.writeText(fullMarkdown);
 
       console.log('✅ Successfully copied to clipboard!');
-      toast.success("Summary copied to clipboard");
+      toast.success("摘要已复制到剪贴板");
 
       // Track copy analytics
       await Analytics.trackCopy('summary', {
@@ -185,7 +185,7 @@ export function useCopyOperations({
       });
     } catch (error) {
       console.error('❌ Failed to copy summary:', error);
-      toast.error("Failed to copy summary");
+      toast.error("复制摘要失败");
     }
   }, [aiSummary, meetingTitle, meeting, blockNoteSummaryRef]);
 

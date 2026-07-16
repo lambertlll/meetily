@@ -200,7 +200,7 @@ export default function AnalyticsConsentSwitch() {
                     variant="outline"
                     size="sm"
                     className="flex-shrink-0"
-                    title="Copy User ID"
+                    title="复制用户 ID"
                   >
                     {isCopied ? (
                       <>
@@ -210,7 +210,7 @@ export default function AnalyticsConsentSwitch() {
                     ) : (
                       <>
                         <Copy className="w-3.5 h-3.5" />
-                        <span>Copy</span>
+                        <span>复制</span>
                       </>
                     )}
                   </Button>

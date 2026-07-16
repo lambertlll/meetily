@@ -63,7 +63,7 @@ export function BetaSettings() {
       {/* Info Box */}
       <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
         <p className="text-sm text-blue-800">
-          <strong>Note:</strong> When disabled, beta features will be hidden. Your existing meetings remain unaffected.
+          <strong>注意：</strong> 禁用后，Beta 功能将被隐藏。您已有的会议记录不受影响。
         </p>
       </div>
     </div>

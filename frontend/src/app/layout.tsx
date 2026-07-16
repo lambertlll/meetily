@@ -112,8 +112,8 @@ export default function RootLayout({
       console.log('[Layout] Received request-recording-toggle from tray');
 
       if (showOnboarding) {
-        toast.error("Please complete setup first", {
-          description: "You need to finish onboarding before you can start recording."
+        toast.error("请先完成初始设置", {
+          description: "您需要完成引导设置后才能开始录音。"
         });
       } else {
         // If in main app, forward to useRecordingStart via window event
@@ -134,7 +134,7 @@ export default function RootLayout({
 
     if (!betaFeatures.importAndRetranscribe) {
       toast.error('Beta feature disabled', {
-        description: 'Enable "Import Audio & Retranscribe" in Settings > Beta to use this feature.'
+        description: '请在 设置 > Beta 中启用“导入音频并重新转录”功能。'
       });
       return;
     }
