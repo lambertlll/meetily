@@ -22,7 +22,7 @@ export default function MeetingWorkspace({
   children,
 }: MeetingWorkspaceProps) {
   const [showNotes, setShowNotes] = useState(true);
-  const [panelWidth, setPanelWidth] = useState(400); // 笔记面板宽度（px）
+  const [panelWidth, setPanelWidth] = useState(300); // 笔记面板宽度（px）
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -40,7 +40,7 @@ export default function MeetingWorkspace({
       const rect = containerRef.current.getBoundingClientRect();
       const newWidth = e.clientX - rect.left;
       // 限制范围：250px ~ 60% 容器宽度
-      const minWidth = 250;
+      const minWidth = 200;
       const maxWidth = rect.width * 0.6;
       setPanelWidth(Math.min(maxWidth, Math.max(minWidth, newWidth)));
     };
