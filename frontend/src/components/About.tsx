@@ -76,18 +76,18 @@ export function About() {
                         {isChecking ? (
                             <>
                                 <Loader2 className="h-3 w-3 mr-2 animate-spin" />
-                                Checking...
+                                检查中...
                             </>
                         ) : (
                             <>
                                 <CheckCircle2 className="h-3 w-3 mr-2" />
-                                Check for Updates
+                                检查更新
                             </>
                         )}
                     </Button>
                     {updateInfo?.available && (
                         <div className="mt-2 text-xs text-blue-600">
-                            Update available: v{updateInfo.version}
+                            有新版本：v{updateInfo.version}
                         </div>
                     )}
                 </div>
