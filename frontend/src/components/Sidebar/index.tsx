@@ -486,7 +486,7 @@ const Sidebar: React.FC = () => {
               </button>
             </TooltipTrigger>
             <TooltipContent side="right">
-              <p>{isRecording ? "Recording in progress..." : "Start Recording"}</p>
+              <p>{isRecording ? "录音中..." : "开始录音"}</p>
             </TooltipContent>
           </Tooltip>
 
@@ -782,12 +782,12 @@ const Sidebar: React.FC = () => {
               {isRecording ? (
                 <>
                   <Square className="w-4 h-4 mr-2" />
-                  <span>Recording in progress...</span>
+                  <span>录音中...</span>
                 </>
               ) : (
                 <>
                   <Mic className="w-4 h-4 mr-2" />
-                  <span>Start Recording</span>
+                  <span>开始录音</span>
                 </>
               )}
             </button>

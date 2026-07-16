@@ -208,7 +208,7 @@ export default function ManualNotesPanel({
           onChange={(e) => setContent(e.target.value)}
           onKeyDown={handleKeyDown}
           spellCheck={false}
-          disabled={!meetingId}
+          disabled={false}
         />
       )}
 
